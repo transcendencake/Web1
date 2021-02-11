@@ -1,0 +1,34 @@
+﻿@model AspNetIdentityApp.Models.LoginModel
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Sign in</h2>
+@using (Html.BeginForm())
+{
+@Html.AntiForgeryToken()
+<div>
+    <hr />
+    @Html.ValidationSummary(false)
+
+    <div>
+        Login
+        <div>
+            @Html.EditorFor(model => model.Login)
+        </div>
+    </div>
+    <div>
+        Password
+        <div>
+            @Html.EditorFor(model => model.Password)
+        </div>
+    </div>
+    <div>
+        <div>
+            <input class="btn" type="submit" value="Sign in" />
+            <input class="btn" type="button" onclick="location.href='@Url.Action("Register","Account")'"value="Sign up" />
+        </div>
+    </div>
+</div>
+}

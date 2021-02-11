@@ -1,0 +1,71 @@
+﻿@model IEnumerable<AspNetIdentityApp.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "User's list";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+@using (Html.BeginForm("UserAction", "Home", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            <button class="btn" name="action" value="block">Block</button>
+            <button class="btn" name="action" value="unblock">Unblock</button>
+            <button class="btn" name="action" value="delete">Delete</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="chkSelectAll" /></th>
+                        <th colspan="1">
+                            ID
+                        </th>
+                        <th>
+                            User name
+                        </th>
+                        <th>
+                            E-mail
+                        </th>
+                        <th>
+                            Reg date
+                        </th>
+                        <th>
+                            Last log in date
+                        </th>
+                        <th>
+                            Blocked
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @Html.EditorForModel(Model)
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="~/Scripts/jquery-3.5.1.js"></script>
+    <script type="text/javascript">
+        $("#chkSelectAll").change(function () {
+            var status = this.checked; //
+            $('.chkSelect').each(function () {
+                this.checked = status;
+            });
+        });
+
+        $('.chkSelect').change(function () {
+            if (this.checked == false) {
+                $("#chkSelectAll")[0].checked = false;
+            }
+
+            if ($('.chkSelect:checked').length == $('.chkSelect').length) {
+                $("#chkSelectAll")[0].checked = true;
+            }
+        });
+    </script>
+}

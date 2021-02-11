@@ -1,0 +1,30 @@
+﻿@model AspNetIdentityApp.Models.ApplicationUser
+
+<tr>
+    <td class="text-nowrap">@Html.CheckBoxFor(m => m.Checked, new { @class = "chkSelect" })</td>
+    <td colspan="1">
+        @Model.Id
+        @Html.HiddenFor(m => m.Id)
+    </td>
+    <td>
+        @Model.UserName
+        @Html.HiddenFor(m => m.UserName)
+    </td>
+    <td>
+        @Model.Email
+        @Html.HiddenFor(m => m.Email)
+    </td>
+    <td>
+        @Model.RegDate
+        @Html.HiddenFor(m => m.RegDate)
+    </td>
+    <td>
+        @Model.LastOnline
+        @Html.HiddenFor(m => m.LastOnline)
+    </td>
+    <td>
+        @Model.Roles.Any(r => r.RoleId == "b0db263a-92db-45db-884e-903029708469").ToString())
+    </td>
+</tr>
+
+
